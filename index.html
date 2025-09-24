@@ -99,7 +99,7 @@
               <button className="btn primary" style={{width:'100%'}} onClick={()=>onSave({amount,period})}>บันทึกเป้าหมาย</button>
             </div>
           </div>
-          <div className="muted" style={{marginTop:6,fontSize:12}}>เช่น 3,000 บาท / เดือน</div>
+          <div className="muted" style={{marginTop:6;fontSize:12}}>เช่น 3,000 บาท / เดือน</div>
         </div>
       );
     }
@@ -305,7 +305,6 @@
       const msg = left >= 0 ? 'เยี่ยม! เดินหน้าต่อไปทีละก้าว' : 'ใจเย็น ๆ จัดลำดับความสำคัญก่อนนะ';
       const catTotals = {};
       rows.filter(r=>r.type==='expense').forEach(r=>{ const k = r.category || 'อื่นๆ'; catTotals[k] = (catTotals[k]||0) + parseAmount(r.amount); });
-      const pieData = Object.entries(catTotals).map(([label,value])=>({label, value}));
       return (
         <div className="card">
           <h3 className="title">สรุป</h3>
@@ -321,7 +320,7 @@
               <div className="muted" style={{fontSize:12}}>เคล็ดลับ: จดทุกค่าใช้จ่ายแม้เล็กน้อย ความสม่ำเสมอคือพลัง 💪</div>
             </div>
             <div>
-              <PieChart data={pieData} />
+              <PieChart data={Object.entries(catTotals).map(([label,value])=>({label, value}))} />
               <div className="muted" style={{fontSize:12,marginTop:4}}>แผนภาพวงกลม: สัดส่วนรายจ่ายแยกตามหมวด</div>
             </div>
           </div>
